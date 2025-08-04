@@ -1,0 +1,19 @@
+.about-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    font-family: var(--default-font-family);
+}
+.about-container h1 {
+    text-align: center;
+    color: var(--text-color);
+}
+.about-container p {
+    font-size: 16px;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+body.dark-mode .about-container h1,
+body.dark-mode .about-container p {
+    color: var(--text-color);
+}
