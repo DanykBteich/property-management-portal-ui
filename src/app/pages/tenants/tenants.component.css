@@ -39,12 +39,6 @@
     margin-right: 0.5em;
     vertical-align: middle;
 }
-.tenants-container .status-icon.vacant {
-    color: #28a745;
-}
-.tenants-container .status-icon.occupied {
-    color: #dc3545;
-}
 
 .tenants-container .tenant-box {
     position: relative;

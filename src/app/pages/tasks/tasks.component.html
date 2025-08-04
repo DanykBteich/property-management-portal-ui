@@ -1,1 +1,33 @@
-<p>tasks.component works!</p>
+<div class="tasks-header">
+  <button (click)="refreshTasks()" class="refresh-button" aria-label="Refresh Tasks">
+    🔄
+  </button>
+</div>
+<div class="tasks-container">
+  <div class="task-box" *ngFor="let task of tasks" [ngClass]="task.TaskStatus.toLowerCase()" >
+    <button class="delete-button" (click)="onDeleteClick(task.TaskId)" aria-label="Delete task">🗑️</button>
+    <div class="confirm-dialog" *ngIf="showConfirm && confirmTaskId === task.TaskId">
+      <p>Are you sure you want to delete this task?</p>
+      <button class="confirm-yes" (click)="confirmDelete()">Yes</button>
+      <button class="confirm-no" (click)="cancelDelete()">No</button>
+    </div>
+
+    <div class="task-icon">
+      <ng-container>📝</ng-container>
+    </div>
+    <h3>{{ task.PropAddress }}</h3>
+    
+    <h4>{{ task.TaskDescription }}</h4>
+    
+    <p>
+      <strong>Scheduled Date:</strong>
+      {{ task.TaskScheduledDate | date }}
+    </p>
+    
+    <p>
+      <span class="type-badge" [ngClass]="task.TaskStatus.toLowerCase()">
+        {{ task.TaskStatus }}
+      </span>
+    </p>
+  </div>
+</div>
