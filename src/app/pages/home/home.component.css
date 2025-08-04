@@ -1,0 +1,108 @@
+.properties-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.refresh-button {
+    background-color: var(--button-background);
+    color: var(--text-color);
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.refresh-button:hover {
+    background-color: var(--button-hover-background);
+    transform: rotate(90deg);
+}
+
+.properties-container {
+    font-family: var(--default-font-family);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+    
+    .status-icon {
+        font-size: 1.8em;
+        margin-right: 0.5em;
+        vertical-align: middle;
+    }
+    .status-icon.vacant   { color: #28a745; }
+    .status-icon.occupied { color: #dc3545; }
+
+  .property-box {
+    position: relative;
+    background: var(--header-background);
+    color: var(--white-text-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--button-hover-background);
+    padding: 1.5rem;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid var(--button-background);
+
+    .type-icon {
+        font-size: 1.8em;
+        margin-left: 0.5em;
+        vertical-align: middle;
+        color: #007bff;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px var(--button-hover-background);
+    }
+
+    h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.25rem;
+    }
+    p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+  }
+
+  body.dark-mode .property-box {
+    border-color: var(--button-hover-background);
+    box-shadow: 0 4px 12px var(--button-hover-background);
+  }
+
+  .property-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .property-box.residential  { border-left: 6px solid #4A90E2; }
+  .property-box.commercial   { border-left: 6px solid #F5A623; }
+
+  .type-badge {
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+  .type-badge.residential {
+    background: #E1F0FF;
+    color: #004AA8;
+  }
+  .type-badge.commercial {
+    background: #FFF4E0;
+    color: #A85E00;
+  }
+}

@@ -1,1 +1,26 @@
-<p>home.component works!</p>
+<div class="properties-header">
+  <button (click)="refreshProperties()" class="refresh-button" aria-label="Refresh Properties">
+    🔄
+  </button>
+</div>
+<div class="properties-container">
+  <div class="property-box" *ngFor="let property of properties" [ngClass]="property.PropType.toLowerCase()">
+    <div class="property-icon">
+      <ng-container *ngIf="property.PropType.toLowerCase() === 'residential'">🏠</ng-container>
+      <ng-container *ngIf="property.PropType.toLowerCase() === 'commercial'">🏢</ng-container>
+    </div>
+    <h3>{{ property.PropAddress }}</h3>
+    <p>{{ property.PropPrice | currency:'EUR' }}</p>
+    <p>
+      <strong>Purchase Date:</strong>
+      {{ property.PropPurchaseDate | date }}
+    </p>
+    <p>
+      <span class="status-icon" [ngClass]="property.PropStatus.toLowerCase()">&#x25CF;</span>
+      {{ property.PropStatus }}
+    </p>
+    <p>
+      <span class="type-badge" [ngClass]="property.PropType.toLowerCase()"> {{ property.PropType }} </span>
+    </p>
+  </div>
+</div>
