@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone: true,
-  imports: [RouterModule]
+  imports: [RouterModule, CommonModule]
 })
 export class HeaderComponent {
   isDarkMode = false;
+  isMenuOpen = false;
 
   toggleDarkMode(): void {
     this.isDarkMode = !this.isDarkMode;
@@ -18,5 +20,13 @@ export class HeaderComponent {
     } else {
       document.body.classList.remove('dark-mode');
     }
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
   }
 }
