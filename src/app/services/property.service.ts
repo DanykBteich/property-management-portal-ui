@@ -19,4 +19,8 @@ export class PropertyService {
   getProperties(): Observable<PropertyResponse> {
     return this.http.get<PropertyResponse>(this.apiUrl);
   }
+
+  deleteProperty(propId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${propId}`)
+  }
 }

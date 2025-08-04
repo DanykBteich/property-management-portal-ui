@@ -5,6 +5,14 @@
 </div>
 <div class="properties-container">
   <div class="property-box" *ngFor="let property of properties" [ngClass]="property.PropType.toLowerCase()">
+    
+    <button class="delete-button" (click)="onDeleteClick(property.PropId)" aria-label="Delete property">🗑️</button>
+    <div class="confirm-dialog" *ngIf="showConfirm && confirmPropId === property.PropId" >
+      <p>Are you sure you want to delete this property?</p>
+      <button class="confirm-yes" (click)="confirmDelete()">Yes</button>
+      <button class="confirm-no" (click)="cancelDelete()">No</button>
+    </div>
+
     <div class="property-icon">
       <ng-container *ngIf="property.PropType.toLowerCase() === 'residential'">🏠</ng-container>
       <ng-container *ngIf="property.PropType.toLowerCase() === 'commercial'">🏢</ng-container>

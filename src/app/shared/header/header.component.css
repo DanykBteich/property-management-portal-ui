@@ -15,7 +15,7 @@
 }
 
 .ribbon-title {
-    color: var(--white-text-color);
+    color: var(--opposite-text-color);
     font-size: 1.75rem;
     margin: 0;
 }
