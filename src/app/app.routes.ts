@@ -5,6 +5,8 @@ import { AboutComponent } from './pages/about/about.component';
 import { TenantsComponent } from './pages/tenants/tenants.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { AddPropertyComponent } from './pages/add-property/add-property.component';
+import { AddTenantComponent } from './pages/add-tenant/add-tenant.component';
+import { AddTaskComponent } from './pages/add-task/add-task.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -12,7 +14,9 @@ export const routes: Routes = [
     { path: 'add-property', component: AddPropertyComponent },
     { path: 'about', component: AboutComponent },
     { path: 'tenants', component: TenantsComponent },
+    { path: 'add-tenant', component: AddTenantComponent },
     { path: 'tasks', component: TasksComponent },
+    { path: 'add-task', component: AddTaskComponent },
     { path: '**', redirectTo: ''}
 ];
 

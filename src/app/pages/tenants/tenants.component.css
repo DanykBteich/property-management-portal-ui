@@ -158,3 +158,15 @@ body.dark-mode .tenant-box {
     background: #FFF4E0;
     color: #A85E00;
 }
+
+.add-tenant-button {
+    background-color: var(--buttons-colors);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin-right: auto;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}

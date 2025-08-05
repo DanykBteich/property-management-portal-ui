@@ -3,6 +3,7 @@ import { TaskService } from '../../services/tasks.service';
 import { PropertyService } from '../../services/property.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks.component',
@@ -17,7 +18,9 @@ export class TasksComponent {
   showConfirm: boolean = false;
   confirmTaskId: string | null = null;
 
-  constructor(private taskService: TaskService, private propertyService: PropertyService) {}
+  constructor(private taskService: TaskService, 
+    private propertyService: PropertyService, 
+    private router: Router) {}
 
   ngOnInit(): void {
     this.loadPropertiesAndTasks();
@@ -66,5 +69,9 @@ export class TasksComponent {
   private resetDialog(): void {
     this.showConfirm = false;
     this.confirmTaskId = null;
+  }
+
+  addTask() {
+    this.router.navigate(['/add-task']);
   }
 }

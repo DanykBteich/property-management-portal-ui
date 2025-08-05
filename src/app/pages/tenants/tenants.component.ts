@@ -3,6 +3,7 @@ import { TenantsService } from '../../services/tenants.service';
 import { PropertyService } from '../../services/property.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tenants.component',
@@ -17,7 +18,7 @@ export class TenantsComponent {
   showConfirm: boolean = false;
   confirmTenantId: string | null = null;
 
-  constructor(private tenantService: TenantsService, private propertyService: PropertyService) {}
+  constructor(private tenantService: TenantsService, private propertyService: PropertyService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadPropertiesAndTenants();
@@ -66,5 +67,9 @@ export class TenantsComponent {
   private resetDialog(): void {
     this.showConfirm = false;
     this.confirmTenantId = null;
+  }
+
+  addTenant() {
+    this.router.navigate(['/add-tenant']);
   }
 }
