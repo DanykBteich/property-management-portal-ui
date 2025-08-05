@@ -1,1 +1,105 @@
-<p>add-tenant.component works!</p>
+<div class="add-tenant-header">
+  <button class="back-button" type="button" (click)="goBack()">← Back</button>
+</div>
+
+<form #tenantForm="ngForm" (ngSubmit)="onSubmit(tenantForm)" class="tenant-form">
+  <h2>Add New Tenant</h2>
+
+  <div class="form-group">
+    <label for="propId">Property</label>
+    <select
+      id="propId"
+      name="propId"
+      [(ngModel)]="propId"
+      required
+      #propIdModel="ngModel"
+    >
+      <option value="" disabled selected>Select a property</option>
+      <option *ngFor="let property of properties" [value]="property.PropId">
+        {{ property.PropAddress }}
+      </option>
+    </select>
+    <div class="error" *ngIf="propIdModel.invalid && propIdModel.touched">
+      Property is <strong>required</strong>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="TenantName">Tenant Name</label>
+    <input
+      id="TenantName"
+      name="TenantName"
+      type="text"
+      [(ngModel)]="TenantName"
+      required
+      #nameModel="ngModel"
+      placeholder="John Doe"
+    />
+    <div class="error" *ngIf="nameModel.invalid && nameModel.touched">
+      Name is <strong>required</strong>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="TenantContactInfo">Contact Info</label>
+    <input
+      id="TenantContactInfo"
+      name="TenantContactInfo"
+      type="text"
+      [(ngModel)]="TenantContactInfo"
+      required
+      #contactModel="ngModel"
+      placeholder="Phone or email"
+    />
+    <div class="error" *ngIf="contactModel.invalid && contactModel.touched">
+      Contact Info is <strong>required</strong>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group half-width">
+      <label for="TenantLeaseTermStart">Lease Start</label>
+      <input
+        id="TenantLeaseTermStart"
+        name="TenantLeaseTermStart"
+        type="date"
+        [(ngModel)]="TenantLeaseTermStart"
+        required
+        #startModel="ngModel"
+      />
+      <div class="error" *ngIf="startModel.invalid && startModel.touched">
+        Start date is <strong>required</strong>
+      </div>
+    </div>
+
+    <div class="form-group half-width">
+      <label for="TenantLeaseTermEnd">Lease End</label>
+      <input
+        id="TenantLeaseTermEnd"
+        name="TenantLeaseTermEnd"
+        type="date"
+        [(ngModel)]="TenantLeaseTermEnd"
+        required
+        #endModel="ngModel"
+      />
+      <div class="error" *ngIf="endModel.invalid && endModel.touched">
+        End date is <strong>required</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="TenantRentalPaymentStatus">Payment Status</label>
+    <select
+      id="TenantRentalPaymentStatus"
+      name="TenantRentalPaymentStatus"
+      [(ngModel)]="TenantRentalPaymentStatus"
+      required
+    >
+      <option value="Pending">Pending</option>
+      <option value="Paid">Paid</option>
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="tenantForm.invalid">Add Tenant</button>
+</form>

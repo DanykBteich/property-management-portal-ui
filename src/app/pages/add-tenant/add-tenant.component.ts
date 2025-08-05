@@ -4,6 +4,18 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+interface Property {
+  PropId: number;
+  PropAddress: string;
+}
+interface PropsResponse {
+  items: Property[];
+  page: number;
+  pages: number;
+  per_page: number;
+  total: number;
+}
+
 @Component({
   selector: 'app-add-tenant',
   standalone: true,
@@ -19,9 +31,20 @@ export class AddTenantComponent {
   TenantName = '';
   TenantRentalPaymentStatus = 'Pending';
 
+  properties: Property[] = [];
+  
   apiUrl = '/api/v1/tenants';
+  propertiesApi = '/api/v1/properties';
 
   constructor(private http: HttpClient, private router: Router, private location: Location) {}
+
+  ngOnInit(): void {
+    this.http.get<PropsResponse>(this.propertiesApi)
+      .subscribe({
+        next: props => this.properties = props.items,
+        error: err => console.error('Could not load properties', err)
+      });
+  }
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
