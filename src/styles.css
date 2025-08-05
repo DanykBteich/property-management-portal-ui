@@ -3,6 +3,7 @@
 :root {
   --default-font-family: Arial, sans-serif;
   --background-color: #ffffff;
+  --buttons-colors: #008755;
   --text-color: #000000;
   --white-text-color: #fff;
   --header-background: linear-gradient(135deg, #008755 0%, #8BC8AA 100%);

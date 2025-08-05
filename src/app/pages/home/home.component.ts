@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { PropertyService } from '../../services/property.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home.component',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   showConfirm: boolean = false;
   confirmPropId: string | null = null;
 
-  constructor(private propertyService: PropertyService) {}
+  constructor(private propertyService: PropertyService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadProperties();
@@ -58,5 +59,9 @@ export class HomeComponent implements OnInit {
   private resetDialog(): void {
     this.showConfirm = false;
     this.confirmPropId = null;
+  }
+
+  addProperty() {
+    this.router.navigate(['/add-property']);
   }
 }
