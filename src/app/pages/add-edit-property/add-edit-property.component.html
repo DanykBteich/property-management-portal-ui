@@ -3,7 +3,7 @@
 </div>
 
 <form #propertyForm="ngForm" (ngSubmit)="onSubmit(propertyForm)" class="property-form">
-  <h2>Add New Property</h2>
+  <h2>{{ propId ? 'Edit Property' : 'Add New Property' }}</h2>
 
   <div class="form-group">
     <label for="address">Address</label>
@@ -82,5 +82,7 @@
     </div>
   </div>
 
-  <button type="submit" [disabled]="propertyForm.invalid">Add Property</button>
+  <button type="submit" [disabled]="propertyForm.invalid">
+    {{ propId ? 'Save Changes' : 'Add Property' }}
+  </button>
 </form>

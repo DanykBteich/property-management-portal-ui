@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Property {
   PropId: number;
@@ -36,7 +36,11 @@ export class AddEditTenantComponent {
   apiUrl = '/api/v1/tenants';
   propertiesApi = '/api/v1/properties';
 
-  constructor(private http: HttpClient, private router: Router, private location: Location) {}
+  constructor(private http: HttpClient, 
+    private router: Router, 
+    private location: Location,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.http.get<PropsResponse>(this.propertiesApi)

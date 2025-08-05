@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, NgForm } from '@angular/forms';
 
@@ -12,6 +12,7 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrls: ['./add-edit-property.component.css']
 })
 export class AddEditPropertyComponent {
+  propId: string | null = null;
   propAddress = '';
   propPrice: number | null = null;
   propPurchaseDate = '';
@@ -20,23 +21,48 @@ export class AddEditPropertyComponent {
 
   apiUrl = '/api/v1/properties';
 
-  constructor(private http: HttpClient, private router: Router, private location: Location) {}
+  constructor(private http: HttpClient, 
+    private router: Router, 
+    private location: Location,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.propId = params.get('id');
+      if (this.propId){
+        this.http.get<any>(`${this.apiUrl}/${this.propId}`).subscribe(data => {
+          this.propAddress = data.PropAddress;
+          this.propPrice = data.PropPrice;
+          this.propPurchaseDate = data.PropPurchaseDate;
+          this.propStatus = data.PropStatus;
+          this.propType = data.PropType;
+        },
+        error => console.error('Failed to load property info', error));
+      }
+    });
+  }
 
   onSubmit(form: NgForm): void {
-    if (form.valid) {
-      const body = {
+    if (!form.valid) return;
+
+    const body = {
         PropAddress: this.propAddress,
         PropPrice: this.propPrice,
         PropPurchaseDate: this.propPurchaseDate,
         PropStatus: this.propStatus,
         PropType: this.propType
       };
-
-      const headers = { 'Content-Type': 'application/json' };
-
-      this.http.post(this.apiUrl, body, { headers }).subscribe({
+    
+    if (this.propId) {
+      this.http.put(`${this.apiUrl}/${this.propId}`, body, { headers: { 'Content-Type': 'application/json' } }).subscribe({
         next: () => this.router.navigate(['/properties']),
-        error: err => console.error('Failed to add property', err)
+        error: error => console.error('Failed to update property', error)
+      });
+    } else {
+      this.http.post(this.apiUrl, body, { headers:  { 'Content-Type': 'application/json' } }).subscribe({
+        next: () => this.router.navigate(['/properties']),
+        error: error => console.error('Failed to add property', error)
       });
     }
   }

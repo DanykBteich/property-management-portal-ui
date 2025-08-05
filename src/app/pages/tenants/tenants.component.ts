@@ -74,6 +74,6 @@ export class TenantsComponent {
   }
 
   onEdit(tenantId: string) {
-    this.router.navigate(['/add-tenant']);
+    this.router.navigate(['/add-tenant', tenantId]);
   }
 }
