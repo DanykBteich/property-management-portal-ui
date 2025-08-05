@@ -5,13 +5,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-property',
+  selector: 'app-add-edit-property',
   standalone: true,
   imports: [CommonModule, FormsModule, HttpClientModule],
-  templateUrl: './add-property.component.html',
-  styleUrls: ['./add-property.component.css']
+  templateUrl: './add-edit-property.component.html',
+  styleUrls: ['./add-edit-property.component.css']
 })
-export class AddPropertyComponent {
+export class AddEditPropertyComponent {
   propAddress = '';
   propPrice: number | null = null;
   propPurchaseDate = '';

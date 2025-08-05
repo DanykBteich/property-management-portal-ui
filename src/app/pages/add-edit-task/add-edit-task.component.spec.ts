@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddTaskComponent } from './add-task.component';
+import { AddTaskComponent } from './add-edit-task.component';
 
 describe('AddTaskComponent', () => {
   let component: AddTaskComponent;

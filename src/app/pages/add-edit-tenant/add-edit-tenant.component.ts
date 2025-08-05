@@ -17,13 +17,13 @@ interface PropsResponse {
 }
 
 @Component({
-  selector: 'app-add-tenant',
+  selector: 'app-add-edit-tenant',
   standalone: true,
-  templateUrl: './add-tenant.component.html',
-  styleUrl: './add-tenant.component.css',
+  templateUrl: './add-edit-tenant.component.html',
+  styleUrl: './add-edit-tenant.component.css',
   imports: [CommonModule, FormsModule, HttpClientModule]
 })
-export class AddTenantComponent {
+export class AddEditTenantComponent {
   propId = '';
   TenantContactInfo = '';
   TenantLeaseTermEnd = '';

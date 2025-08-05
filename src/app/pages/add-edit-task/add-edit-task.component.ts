@@ -10,13 +10,13 @@ interface Property {
 }
 
 @Component({
-  selector: 'app-add-task',
+  selector: 'app-add-edit-task',
   standalone: true,
-  templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.css'],
+  templateUrl: './add-edit-task.component.html',
+  styleUrls: ['./add-edit-task.component.css'],
   imports: [CommonModule, FormsModule, HttpClientModule]
 })
-export class AddTaskComponent implements OnInit {
+export class AddEditTaskComponent implements OnInit {
   propId = '';
   TaskDescription = '';
   TaskScheduledDate = '';
