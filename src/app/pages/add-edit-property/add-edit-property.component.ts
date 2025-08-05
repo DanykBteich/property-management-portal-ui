@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { FormsModule, NgForm } from '@angular/forms';
   templateUrl: './add-edit-property.component.html',
   styleUrls: ['./add-edit-property.component.css']
 })
-export class AddEditPropertyComponent {
+export class AddEditPropertyComponent implements OnInit {
   propId: string | null = null;
   propAddress = '';
   propPrice: number | null = null;

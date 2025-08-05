@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -23,7 +23,8 @@ interface PropsResponse {
   styleUrl: './add-edit-tenant.component.css',
   imports: [CommonModule, FormsModule, HttpClientModule]
 })
-export class AddEditTenantComponent {
+export class AddEditTenantComponent implements OnInit {
+  tenantId: string | null = null;
   propId = '';
   TenantContactInfo = '';
   TenantLeaseTermEnd = '';
@@ -48,11 +49,29 @@ export class AddEditTenantComponent {
         next: props => this.properties = props.items,
         error: err => console.error('Could not load properties', err)
       });
+
+      this.route.paramMap.subscribe(params => {
+        this.tenantId = params.get('id');
+        if (this.tenantId){
+          this.http.get<any>(`${this.apiUrl}/${this.tenantId}`).subscribe(
+            data => {
+              this.propId = data.PropId;
+              this.TenantName = data.TenantName;
+              this.TenantContactInfo = data.TenantContactInfo;
+              this.TenantLeaseTermStart = data.TenantLeaseTermStart;
+              this.TenantLeaseTermEnd = data.TenantLeaseTermEnd;
+              this.TenantRentalPaymentStatus = data.TenantRentalPaymentStatus;
+            },
+            error => console.error('Failed to load tenant info', error)
+          );
+        }
+      });
   }
 
   onSubmit(form: NgForm): void {
-    if (form.valid) {
-      const body = {
+    if (!form.valid) return;
+
+    const body = {
         PropId: this.propId,
         TenantContactInfo: this.TenantContactInfo,
         TenantLeaseTermStart: this.TenantLeaseTermStart,
@@ -61,13 +80,19 @@ export class AddEditTenantComponent {
         TenantRentalPaymentStatus: this.TenantRentalPaymentStatus
       };
 
-      const headers = { 'content-Type': 'application/json' };
-
-      this.http.post(this.apiUrl, body, { headers }).subscribe({
-        next: () => this.router.navigate(['/tenants']),
-        error: err => console.error('Failed to add tenant', err)
-      });
-    }
+      if (this.tenantId){
+        this.http.put(`${this.apiUrl}/${this.tenantId}`, body, { headers: { 'Content-Type': 'application/json' } })
+        .subscribe({
+          next: () => this.router.navigate(['/tenants']),
+          error: error => console.error('Failed to update tenant', error)
+        });
+      } else {
+        this.http.post(`${this.apiUrl}`, body, { headers: { 'Content-Type': 'application/json' } })
+        .subscribe({
+          next: () => this.router.navigate(['/tenants']),
+          error: error => console.error('Failed to add tenant', error)
+        });
+      }
   }
 
   goBack(): void {

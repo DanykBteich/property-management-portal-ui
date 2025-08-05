@@ -3,7 +3,7 @@
 </div>
 
 <form #tenantForm="ngForm" (ngSubmit)="onSubmit(tenantForm)" class="tenant-form">
-  <h2>Add New Tenant</h2>
+  <h2>{{ tenantId ? 'Edit Tenant' : 'Add New Tenant' }}</h2>
 
   <div class="form-group">
     <label for="propId">Property</label>
@@ -101,5 +101,7 @@
     </select>
   </div>
 
-  <button type="submit" [disabled]="tenantForm.invalid">Add Tenant</button>
+  <button type="submit" [disabled]="tenantForm.invalid">
+    {{ tenantId ? 'Save Changes' : 'Add Tenant' }}
+  </button>
 </form>
