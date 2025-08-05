@@ -74,4 +74,8 @@ export class TasksComponent {
   addTask() {
     this.router.navigate(['/add-task']);
   }
+
+  onEdit(taskId: string) {
+    this.router.navigate(['/add-task']);
+  }
 }

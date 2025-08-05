@@ -6,6 +6,7 @@
 </div>
 <div class="tenants-container">
   <div class="tenant-box" *ngFor="let tenant of tenants" [ngClass]="tenant.TenantRentalPaymentStatus.toLowerCase()" >
+    <button class="edit-button" (click)="onEdit(tenant.TenantId)" aria-label="Edit tenant">✏️</button>
     <button class="delete-button" (click)="onDeleteClick(tenant.TenantId)" aria-label="Delete tenant">🗑️</button>
     <div class="confirm-dialog" *ngIf="showConfirm && confirmTenantId === tenant.TenantId">
       <p>Are you sure you want to delete this tenant?</p>

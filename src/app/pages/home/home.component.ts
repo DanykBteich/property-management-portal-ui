@@ -64,4 +64,8 @@ export class HomeComponent implements OnInit {
   addProperty() {
     this.router.navigate(['/add-property']);
   }
+
+  onEdit(propId: string) {
+    this.router.navigate(['/add-property']);
+  }
 }
