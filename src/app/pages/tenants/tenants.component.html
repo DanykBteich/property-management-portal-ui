@@ -1,0 +1,35 @@
+<div class="tenants-header">
+  <button (click)="addTenant()" routerLink="/add-tenant" class="add-tenant-button" aria-label="Add Tenant">Add Tenant</button>
+  <button (click)="refreshTenants()" class="refresh-button" aria-label="Refresh Tenants">
+    🔄
+  </button>
+</div>
+<div class="tenants-container">
+  <div class="tenant-box" *ngFor="let tenant of tenants" [ngClass]="tenant.TenantRentalPaymentStatus.toLowerCase()" >
+    <button class="edit-button" (click)="onEdit(tenant.TenantId)" aria-label="Edit tenant">✏️</button>
+    <button class="delete-button" (click)="onDeleteClick(tenant.TenantId)" aria-label="Delete tenant">🗑️</button>
+    <div class="confirm-dialog" *ngIf="showConfirm && confirmTenantId === tenant.TenantId">
+      <p>Are you sure you want to delete this tenant?</p>
+      <button class="confirm-yes" (click)="confirmDelete()">Yes</button>
+      <button class="confirm-no" (click)="cancelDelete()">No</button>
+    </div>
+
+    <div class="tenant-icon">
+      <ng-container>🙍‍♂️</ng-container>
+    </div>
+
+    <h3>{{ tenant.TenantName }}</h3>
+    <h3>+{{ tenant.TenantContactInfo }}</h3>
+    
+    <p>
+      <strong>Lease:</strong>
+      {{ tenant.TenantLeaseTermStart | date }} - {{ tenant.TenantLeaseTermEnd | date }}
+    </p>
+    <h4>{{ tenant.PropAddress }}</h4>
+    <p>
+      <span class="type-badge" [ngClass]="tenant.TenantRentalPaymentStatus.toLowerCase()">
+        {{ tenant.TenantRentalPaymentStatus }}
+      </span>
+    </p>
+  </div>
+</div>

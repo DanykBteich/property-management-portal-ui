@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --default-font-family: Arial, sans-serif;
+  --background-color: #ffffff;
+  --buttons-colors: #008755;
+  --text-color: #000000;
+  --white-text-color: #fff;
+  --header-background: linear-gradient(135deg, #008755 0%, #8BC8AA 100%);
+  --button-background: rgba(255, 255, 255, 0.15);
+  --button-hover-background: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --header-background: linear-gradient(135deg, #1f1f1f 0%, #3a3a3a 100%);
+  --button-background: rgba(255, 255, 255, 0.1);
+  --button-hover-background: rgba(255, 255, 255, 0.25);
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

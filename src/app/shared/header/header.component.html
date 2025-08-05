@@ -1,0 +1,30 @@
+<header class="ribbon-header">
+  <div class="ribbon-content">
+
+    <div class="burger-menu" >
+      <button class="burger-btn" (click)="toggleMenu()" aria-label="Toggle menu">
+        ☰
+      </button>
+      <ul class="burger-list" *ngIf="isMenuOpen">
+        <li><a routerLink="/properties" class="ribbon-btn" (click)="closeMenu()">Properties</a></li>
+        <li><a routerLink="/tenants" class="ribbon-btn" (click)="closeMenu()">Tenants</a></li>
+        <li><a routerLink="/tasks" class="ribbon-btn" (click)="closeMenu()">Tasks</a></li>
+      </ul>
+    </div>
+
+    <h1 class="ribbon-title">Property Management System</h1>
+    <nav class="ribbon-nav">
+      <ul class="ribbon-list">
+        <li><a routerLink="/" class="ribbon-btn">Home</a></li>
+        <li><a routerLink="/about" class="ribbon-btn">About</a></li>
+        <li class="dark-mode-toggle">
+          <div class="toggle-label">{{ isDarkMode ? 'Dark Mode' : 'Light Mode' }}</div>
+          <label class="switch">
+            <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode()">
+            <span class="slider round"></span>
+          </label>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,189 @@
+.tenants-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.refresh-button {
+    background-color: var(--button-background);
+    color: var(--text-color);
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.refresh-button:hover {
+    background-color: var(--button-hover-background);
+    transform: rotate(90deg);
+}
+
+.tenants-container {
+    font-family: var(--default-font-family);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.tenants-container .status-icon {
+    font-size: 1.8em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+.tenants-container .tenant-box {
+    position: relative;
+    background: var(--header-background);
+    color: var(--white-text-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--button-hover-background);
+    padding: 1.5rem;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid var(--button-background);
+}
+
+.tenants-container .tenant-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--button-hover-background);
+}
+
+.tenants-container .tenant-box h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+}
+.tenants-container .tenant-box p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.tenants-container .delete-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    color: red; /* make icon red */
+}
+
+.tenants-container .delete-button:hover {
+    opacity: 1;
+}
+
+/* Inline confirmation dialog */
+.tenants-container .confirm-dialog {
+    color: #000000;
+    position: absolute;
+    top: 2.5rem;
+    right: 0.5rem;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 0.5rem 0.75rem;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
+    display: inline-block; 
+}
+
+.tenants-container .confirm-dialog p {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+}
+
+.tenants-container .confirm-dialog button {
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.25rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.tenants-container .confirm-yes {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.tenants-container .confirm-no {
+    background: #bdc3c7;
+    color: #333;
+}
+
+body.dark-mode .tenant-box {
+    border-color: var(--button-hover-background);
+    box-shadow: 0 4px 12px var(--button-hover-background);
+}
+
+.tenants-container .tenant-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.tenants-container .tenant-box.paid {
+    border-left: 6px solid #4A90E2;
+}
+.tenants-container .tenant-box.pending {
+    border-left: 6px solid #F5A623;
+}
+
+.tenants-container .type-badge {
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+.tenants-container .type-badge.paid {
+    background: #E1F0FF;
+    color: #004AA8;
+}
+.tenants-container .type-badge.pending {
+    background: #FFF4E0;
+    color: #A85E00;
+}
+
+.add-tenant-button {
+    background-color: var(--buttons-colors);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin-right: auto;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.tenants-container .edit-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 2.5rem;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    color: var(--text-color);
+}
+
+.tenants-container .edit-button:hover {
+    opacity: 1;
+}

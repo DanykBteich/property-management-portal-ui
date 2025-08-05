@@ -1,0 +1,74 @@
+<div class="add-task-header">
+  <button class="back-button" type="button" (click)="goBack()">← Back</button>
+</div>
+
+<form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)" class="task-form">
+  <h2>{{ taskId ? 'Edit Task' : 'Add New Task' }}</h2>
+  <div class="form-group">
+    <label for="propId">Property</label>
+    <select
+      id="propId"
+      name="propId"
+      [(ngModel)]="propId"
+      required
+      #propIdModel="ngModel"
+    >
+      <option value="" disabled selected>Select a property</option>
+      <option *ngFor="let p of properties" [value]="p.PropId">
+        {{ p.PropAddress }}
+      </option>
+    </select>
+    <div class="error" *ngIf="propIdModel.invalid && propIdModel.touched">
+      Property is <strong>required</strong>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="TaskDescription">Description</label>
+    <textarea
+      id="TaskDescription"
+      name="TaskDescription"
+      rows="3"
+      [(ngModel)]="TaskDescription"
+      required
+      #descModel="ngModel"
+      placeholder="What needs to be done…"
+    ></textarea>
+    <div class="error" *ngIf="descModel.invalid && descModel.touched">
+      Description is <strong>required</strong>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="TaskScheduledDate">Scheduled Date</label>
+    <input
+      id="TaskScheduledDate"
+      name="TaskScheduledDate"
+      type="date"
+      [(ngModel)]="TaskScheduledDate"
+      required
+      #dateModel="ngModel"
+    />
+    <div class="error" *ngIf="dateModel.invalid && dateModel.touched">
+      Date is <strong>required</strong>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="TaskStatus">Status</label>
+    <select
+      id="TaskStatus"
+      name="TaskStatus"
+      [(ngModel)]="TaskStatus"
+      required
+    >
+      <option *ngFor="let s of statusOptions" [value]="s">
+        {{ s }}
+      </option>
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="taskForm.invalid">
+    {{ taskId ? 'Save Changes' : 'Add Task' }}
+  </button>
+</form>
