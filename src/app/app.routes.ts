@@ -12,11 +12,14 @@ export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'properties', component: HomeComponent },
     { path: 'add-property', component: AddEditPropertyComponent },
+    { path: 'add-property/:id', component: AddEditPropertyComponent },
     { path: 'about', component: AboutComponent },
     { path: 'tenants', component: TenantsComponent },
     { path: 'add-tenant', component: AddEditTenantComponent },
+    { path: 'add-tenant/:id', component: AddEditTenantComponent },
     { path: 'tasks', component: TasksComponent },
     { path: 'add-task', component: AddEditTaskComponent },
+    { path: 'add-task/:id', component: AddEditTaskComponent },
     { path: '**', redirectTo: ''}
 ];
 
