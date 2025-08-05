@@ -17,6 +17,7 @@ interface Property {
   imports: [CommonModule, FormsModule, HttpClientModule]
 })
 export class AddEditTaskComponent implements OnInit {
+  taskId: string | null = null;
   propId = '';
   TaskDescription = '';
   TaskScheduledDate = '';
@@ -40,6 +41,21 @@ export class AddEditTaskComponent implements OnInit {
       next: resp => this.properties = resp.items,
       error: err => console.error('Could not load properties', err)
     });
+
+    this.route.paramMap.subscribe(params => {
+      this.taskId = params.get('id');
+      if (this.taskId) {
+        this.http.get<any>(`${this.tasksApi}/${this.taskId}`).subscribe({
+          next: data => {
+            this.propId = data.PropId.toString();
+            this.TaskDescription = data.TaskDescription;
+            this.TaskScheduledDate = data.TaskScheduledDate;
+            this.TaskStatus = data.TaskStatus;
+          },
+          error: error => console.error('Failed to load task', error)
+        });
+      }
+    });
   }
 
   onSubmit(form: NgForm): void {
@@ -52,12 +68,19 @@ export class AddEditTaskComponent implements OnInit {
       TaskStatus: this.TaskStatus
     };
 
-    this.http.post(this.tasksApi, body, {
-      headers: { 'Content-Type': 'application/json' }
-    }).subscribe({
-      next: () => this.router.navigate(['/tasks']),
-      error: err => console.error('Failed to add task', err)
-    });
+    if (this.taskId) {
+      this.http.put(`${this.tasksApi}/${this.taskId}`, body, { headers: { 'Content-Type': 'application/json' } })
+      .subscribe({
+        next: () => this.router.navigate(['/tasks']),
+        error: error => console.error('Failed to update task', error)
+      });
+    } else {
+      this.http.post(`${this.tasksApi}`, body, { headers: { 'Content-Type': 'application/json' } })
+      .subscribe({
+        next: () => this.router.navigate(['/tasks']),
+        error: error => console.error('Failed to add task', error)
+      });
+    }
   }
 
   goBack(): void {

@@ -3,7 +3,7 @@
 </div>
 
 <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)" class="task-form">
-  <h2>Add New Task</h2>
+  <h2>{{ taskId ? 'Edit Task' : 'Add New Task' }}</h2>
   <div class="form-group">
     <label for="propId">Property</label>
     <select
@@ -68,5 +68,7 @@
     </select>
   </div>
 
-  <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
+  <button type="submit" [disabled]="taskForm.invalid">
+    {{ taskId ? 'Save Changes' : 'Add Task' }}
+  </button>
 </form>
